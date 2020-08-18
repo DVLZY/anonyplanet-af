@@ -5,10 +5,7 @@ import com.netflix.zuul.exception.ZuulException;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Linzeyu
- * @create 2020-08-19 00:52
- * @describe
- * @state todo
+ * @author 高祎蒙
  */
 @Component
 public class AnonyPlanetFilter extends ZuulFilter {
