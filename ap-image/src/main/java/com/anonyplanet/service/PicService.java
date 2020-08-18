@@ -14,15 +14,19 @@ import java.util.UUID;
 
 @Service
 public class PicService {
+
     @Autowired
     private ObjectMapper objectMapper;
 
-    PicUploadResult picUploadResult = new PicUploadResult();
 
     /**
      * 图片上传
      */
-    public String picUpload(MultipartFile pic) {
+    public PicUploadResult picUpload(MultipartFile pic) {
+
+        PicUploadResult picUploadResult = new PicUploadResult();
+
+        System.out.println(" = ");
         try {
             // 获取文件原名称
             String oName = pic.getOriginalFilename();
@@ -38,7 +42,8 @@ public class PicService {
             //  为当前图片文件 生成公用路径
             String path = "/" + UploadUtil.getUploadPath(oName, "AnonyPlanet") + "/";
             //  静态资源根目录
-            String rootDir = "D:/img";
+//            String rootDir = "D:/img";
+            String rootDir = "/www/wwwroot/www.anonyplanet.com/img";
             //  多级路径前缀
             String newFileName = UUID.randomUUID().toString() + extName;
             //  path+newFileName
@@ -71,20 +76,20 @@ public class PicService {
             //    生成一个图片ID
             String picId = UUID.randomUUID().toString();
             // todo 根据存储的路径，生成URL地址
-            String imgFull = "http://image.anonyplanet.com/" + path + newFileName;
-            String imgSmall = "http://image.anonyplanet.com/" + path + "smallImage-" + newFileName;
+            String imgFull = "http://121.41.231.81/img/" + path + newFileName;
+            String imgSmall = "http://121.41.231.81/img/" + path + "smallImage-" + newFileName;
 
             picUploadResult.setImgUrlFull(imgFull);
             picUploadResult.setImgUrlSmall(imgSmall);
 
             String imgUrl = objectMapper.writeValueAsString(picUploadResult);
             System.out.println(imgUrl);
-            return imgUrl;
+            return picUploadResult;
 
         } catch (Exception e) {
             e.printStackTrace();
             picUploadResult.setError(1);
-            return "";
+            return picUploadResult;
         }
     }
 }
