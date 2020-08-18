@@ -17,7 +17,7 @@ public class WorksController {
     private WorksService worksService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getWorks(@RequestParam("longitude") Double longitude, @PathVariable("latitude") Double latitude) {
+    public Object getWorks(@RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude) {
         try {
             Point point = new Point(longitude, latitude);
             return worksService.getWorks(point);
@@ -28,8 +28,11 @@ public class WorksController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public SysResult addWorks(@RequestParam("image") String image, @RequestParam("thumbnail") String thumbnail,
-                              @RequestParam("description") String description, @RequestParam("longitude") Double longitude, @PathVariable("latitude") Double latitude) {
+    public SysResult addWorks(@RequestParam("image") String image,
+                              @RequestParam("thumbnail") String thumbnail,
+                              @RequestParam("description") String description,
+                              @RequestParam("longitude") Double longitude,
+                              @RequestParam("latitude") Double latitude) {
         try {
             Works works = new Works();
             Point point = new Point(longitude, latitude);

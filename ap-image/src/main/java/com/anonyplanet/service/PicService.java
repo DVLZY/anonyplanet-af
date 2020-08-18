@@ -12,12 +12,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.UUID;
 
+/**
+ * @author 邓启航
+ */
 @Service
 public class PicService {
 
     @Autowired
     private ObjectMapper objectMapper;
-
 
     /**
      * 图片上传
@@ -32,7 +34,9 @@ public class PicService {
             String oName = pic.getOriginalFilename();
             // 截取后缀
             String extName = oName.substring(oName.lastIndexOf("."));
-            String regex = ".(png|gif|jpg|jpeg)$";//包含了图片后缀正则
+            // 后缀正则
+            String regex = ".(png|gif|jpg|jpeg)$";
+
             if (extName != null && !(extName.matches(regex))) {
                 // 后缀存在，并且不再图片返回之内
                 throw new RuntimeException("图片后缀名不合法");
@@ -51,31 +55,31 @@ public class PicService {
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            //  二进制输出到文件rootDir+path+newFileName
-            File Imgfile = new File(rootDir + path + newFileName);
-            pic.transferTo(Imgfile);
+            // 二进制输出到文件rootDir+path+newFileName
+            File imgfile = new File(rootDir + path + newFileName);
+            pic.transferTo(imgfile);
 
-            //    裁剪  缩放
+            // 裁剪  缩放
             BufferedImage bi = null;
             try {
-                bi = ImageIO.read(Imgfile);
+                bi = ImageIO.read(imgfile);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            int width = bi.getWidth(); // 像素
-            int height = bi.getHeight(); // 像素
+            int width = bi.getWidth();
+            int height = bi.getHeight();
             if (width > height) {
                 int tmp = height;
                 height = width;
                 width = tmp;
             }
             File smallImage = new File(rootDir + path + "smallImage-" + newFileName);
-            Thumbnails.of(Imgfile)
+            Thumbnails.of(imgfile)
                     .size(150, 150).sourceRegion(Positions.CENTER, width, width)
                     .toFile(smallImage);
             //    生成一个图片ID
             String picId = UUID.randomUUID().toString();
-            // todo 根据存储的路径，生成URL地址
+
             String imgFull = "http://121.41.231.81/img/" + path + newFileName;
             String imgSmall = "http://121.41.231.81/img/" + path + "smallImage-" + newFileName;
 

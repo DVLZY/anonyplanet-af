@@ -1,7 +1,6 @@
 package com.anonyplanet.filter;
 
 import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.exception.ZuulException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,7 +24,7 @@ public class AnonyPlanetFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         return null;
     }
 }

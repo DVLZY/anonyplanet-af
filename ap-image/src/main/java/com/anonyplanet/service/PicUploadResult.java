@@ -1,9 +1,11 @@
 package com.anonyplanet.service;
 
+/**
+ * @author 邓启航
+ */
 public class PicUploadResult {
-    //图片上传错误不能抛出，抛出就无法进行jsp页面回调，所以设置这个标识，0表示无异常，1代表异常
+
     private String imgUrlFull;
-    //应该是浏览器能够解析的具体页面路径  相对路径http://image.jt/1212.jpg
     private String imgUrlSmall;
     private Integer error = 0;
     private String picId;

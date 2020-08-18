@@ -28,8 +28,7 @@ public class SysResult {
      * @param data   数据内容
      * @return
      */
-    public static SysResult build(Integer status
-            , String msg, Object data) {
+    public static SysResult build(Integer status, String msg, Object data) {
         return new SysResult(status, msg, data);
     }
 
