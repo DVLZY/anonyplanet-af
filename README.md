@@ -1,5 +1,11 @@
-# anonyplanet-af
+# anonyplanet-af 匿名星球后端源码
 
+## 建库SQL
+
+
+
+
+```SQL
 CREATE TABLE `works` (
   `works` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -10,4 +16,4 @@ CREATE TABLE `works` (
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`works`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+```
