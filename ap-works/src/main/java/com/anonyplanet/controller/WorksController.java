@@ -17,17 +17,20 @@ public class WorksController {
     private WorksService worksService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getWorks(@RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude) {
+    public Object getWorks(
+            @RequestParam("longitude") Double longitude, 
+            @RequestParam("latitude") Double latitude
+    ) {
         try {
             Point point = new Point(longitude, latitude);
             return worksService.getWorks(point);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return "作品获取失败";
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public SysResult addWorks(@RequestParam("image") String image,
                               @RequestParam("thumbnail") String thumbnail,
                               @RequestParam("description") String description,

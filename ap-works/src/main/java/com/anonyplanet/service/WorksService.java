@@ -58,7 +58,6 @@ public class WorksService {
             String wjson = mapper.writeValueAsString(result);
             // 提取作品ID
             String workID = wjson.split("\"name\":\"")[1].split("\",\"point\"")[0];
-            System.out.println("workID = " + workID);
 
             if (!workID.equals(user)) {
                 // 判断MySQL里的对象是否在Redis中有缓存

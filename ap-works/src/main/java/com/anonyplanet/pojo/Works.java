@@ -79,4 +79,17 @@ public class Works implements Serializable {
     public Works() {
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+                "works='" + works + '\'' +
+                ", image='" + image + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", description='" + description + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", time=" + time +
+                '}';
+    }
 }
